@@ -5,6 +5,8 @@ import url from 'url';
 
 import('./files/c.js');
 
+process.removeAllListeners('warning');
+
 const __filename = url.fileURLToPath(import.meta.url);
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
