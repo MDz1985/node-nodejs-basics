@@ -1,10 +1,13 @@
 import { argv } from "node:process";
 
 const parseArgs = () => {
-  argv.slice(2).reduce((pr, cur, i) => {
-    if (i % 2) console.log(`${ pr } is ${ cur }`);
-    return cur
-  });
+  const regex = /--.*/;
+  const result = argv.reduce((acc, cur, i) =>
+      i && !regex.test(cur) && regex.test(argv[i - 1]) ?
+        [...acc, `${ argv[i - 1].slice(2) } is ${ cur }`] :
+        acc
+    , []);
+  console.log(result.join(', '))
 };
 
 parseArgs();
